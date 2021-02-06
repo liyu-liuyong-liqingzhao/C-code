@@ -1,0 +1,11 @@
+#include<stdio.h>
+int main(){
+    int a = 3;
+    int b = 5;
+    
+    a = a^b;//^是按位异或符号，二进制码相同则为0，不同则为1.
+    b = a^b;
+    a = a^b;
+    
+    return 0;
+    }
