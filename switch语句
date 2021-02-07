@@ -10,9 +10,12 @@ int main(){
     case 4:
     case 5:
         printf("工作日\n");//前面四个case没有break，会自动往后运行，直到case 5出现break，才会停止，因此输入1-5运行结果相同，代码没有问题。
-        break
+        break;
     case 6:
     case 7:
         printf("休息日\n");
-        break
+        break;
+    default://输入大于7的情况。
+        printf("错误\n");
+        break;
     }
