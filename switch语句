@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main(){
+    int day=0;
+    scanf("%d\n",&day);
+    switch(day)
+    {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        printf("工作日\n");//前面四个case没有break，会自动往后运行，直到case 5出现break，才会停止，因此输入1-5运行结果相同，代码没有问题。
+        break
+    case 6:
+    case 7:
+        printf("休息日\n");
+        break
+    }
