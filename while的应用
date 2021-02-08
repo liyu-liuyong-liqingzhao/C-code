@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main(){
+    int ret = 0;
+    int ch = 0;
+    char password[20] = {0};
+    printf("输入密码：");
+    scanf("%s",password)
+    while((ch=getchar()) != '\n')  //scanf只读取空格和回车前面的字符，（输入后需要按回车运行下一步）按下的回车（即'\n'字符）或密码本身包含空格和后面的内容会自动进入getchar中进行后面的运行。
+    {                              //因此while里的getchar会把剩余的字符全部拿走，下一个getchar获取不到内容，就会等待输入内容。
+      ;                            //while条件里面会先读取再判断，因此会把最后的'\n'也读走。
+    }
+    printf("确认Y/N:");
+    ret = getchar();
+    if(ret == 'Y')
+        printf("已确认\n");
+    else
+        printf("放弃\n");
+    return 0;
+   }
