@@ -1,0 +1,11 @@
+#include<stdio.h>
+int main(){
+    int a=0;
+    int b=2;
+    if(a==1)
+        if(b==2)  //else匹配这个if。
+            printf("hehe\n");
+    else  //else未缩进，但是它会匹配距离最近的未匹配的if（处于同一代码块），因此结果不输出任何字符。
+        printf("haha\n");
+    return 0;
+    }
