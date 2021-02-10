@@ -1,0 +1,17 @@
+#include<stdio.h>
+    void swap(int* pa,int* pb)            //void swap(int x,int y)    //右边的代码只是交换了x,y的值，不影响a,b，交换失败。
+    {                                            {
+    int tmp = 0;                                 int tmp = 0;
+    tmp = *pa;                                   tmp = x;
+    *pa = *pb;                                   x = y;
+    *pb = tmp;                                   y = tmp;
+    }                                            }
+    int main()
+    {
+    int a=10;
+    int b=20;
+    swap(&a,&b);                                 swap(a,b);
+    printf("a=%d,b=%d",a,b);
+
+    return 0;
+}
