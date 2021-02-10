@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+void menu()
+{
+    printf("   1.开始    0.自己滚    \n");
+}
+void game()
+{
+    int ret = 0;
+    int guess = 0;
+    ret = rand()%100+1;   //rand函数范围为0到32767之间，因此模100再加一生成1到100的随机数。
+    while(1)
+    {
+        printf("输入数字：");
+        scanf("%d",&guess);
+        if(guess<ret)
+            {
+            printf("小了!\n");
+            }
+        else if(guess>ret)
+            {
+            printf("大了!\n");
+            }
+        else
+            {printf("恭喜你猜对了！\n");
+            break;}
+    }
+}
+int main()
+{
+
+
+    int input = 0;
+    srand((unsigned int)time(NULL));    //rand函数生成随机数，但是每次重新运行生成的数字一样。使用srand函数来生成随机数起点。
+    do                                  //srand函数接受一个整型变量，运用时间戳（time函数）来让随机数起点不断变化。
+    {                                   //时间戳为当前时间与1970.1.1的零点的时间差（单位：秒）.
+        menu();                         //srand放在循环外部，不然生成的随机数相距很近。
+        printf("请输入1/0：");           //time函数生成长整型，unsigned int将其改为整型，NULL表示空指针。
+        scanf("%d",&input);
+        switch(input)
+        {
+        case 1:
+            game();
+            break;
+        case 0:
+            printf("滚吧\n");
+            break;
+        default:
+            printf("滚去重选！\n");
+            break;
+        }
+    } while(input);
+    return 0;
+}
+
