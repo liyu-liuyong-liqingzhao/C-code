@@ -1,0 +1,5 @@
+#include<stdio.h>
+int main(){
+    printf("%d",printf("%d",printf("d",43)))    //printf的返回值为打印的字符的个数。
+    return 0;                                   //最先打印43，然后这是两个字符，因此中间的printf打印2,2是一个字符，因此最外面的printf打印1。
+    }                                           //因此输出结果为4321.
