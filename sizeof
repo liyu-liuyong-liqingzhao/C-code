@@ -1,0 +1,10 @@
+#include<stdio.h>
+int i;         //全局变量如果不初始化则默认为0.
+int main(){
+    i = -1;
+    if(i>sizeof(i))      //sizeof得到无符号数，所以和sizeof比较或计算时，其他数先转化为无符号数。
+        printf(">");     //-1二级制码转化为无符号数很大。因此输出>。
+    else
+        printf("<");
+    return 0;
+    }
