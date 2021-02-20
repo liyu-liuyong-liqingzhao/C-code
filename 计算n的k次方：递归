@@ -1,0 +1,19 @@
+#include<stdio.h>
+double pow(int n,int k)
+    {
+    if(k<0)
+        return (1/(pow(n,-k)));
+    else if(k==0)
+        return 1;
+    else 
+        return n*pow(n,k-1);
+    }
+
+int main(){
+    int k=0;
+    int n=0;
+    scanf("%d%d",&n,&k);
+    double ret = pow(n,k);
+    printf("ret=%lf\n",ret);
+    return 0;
+    }
