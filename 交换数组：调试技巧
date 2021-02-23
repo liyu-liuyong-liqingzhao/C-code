@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<assert.h>
+
+int main()
+{
+    const int a=10;
+    方式1：int* p=&a;          //使用const修饰a，但是a的值还是会被改变。
+    方式2：const int* p=&a;    //const修饰*p，所以*p即a的值无法被改变。
+    方式3：int* const p=&a;    //const修饰p，即该地址无法被改变，不能赋予其他地址。
+    *p=20;
+    printf("%d",a);
+    return 0;
+    }
+
+                                            //strcpy是系统函数，有返回值，返回被赋值后的字符。需要引用<stdlib.h>，此处mcopy为自定义函数，模仿其功能。
+char* mcopy(char* dest,const char* src)     //const可以防止赋值对象搞反，因为arr2被const修饰无法更改，所以当写错成arr1赋值给arr2时程序会报错。
+{
+    char* ret=dest;
+    assert(dest!=NULL)       //使用assert可以使编译器直接判断是否为该语句出错，便于调试。
+    assert(src!=NULL)
+    while(*dest++=*src++)    //while语句是以赋给的值来判断，即以arr2赋给arr1的值判断。
+    {                        //arr2中自带'\0'，当它赋值给arr1时，赋值0，while循环退出。
+        ;
+    }
+    return ret;              //dest的地址在while中已经改变，所以需要使用临时变量将最开始的地址存下来。
+}    
+
+int main(){
+    char arr1[]="###########";   //这种定义方式后面会自带'\0'符号。
+    char arr2[]="sb";
+    mcopy(arr1,arr2);       //因此函数有返回值，可以直接将其作为printf的参数。
+    printf("%s\n",arr1);    //放在arr1的位置。
+    return 0;
+    }
