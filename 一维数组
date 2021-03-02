@@ -12,6 +12,6 @@ int main(){
     printf("%d",strlen(arr5));   //'\0'之前的元素，输出6。
     
     char arr6[]={'a','b','c'};   //这样定义的数组在c后面是随机值，不是'\0'，因此sizeof输出3，而strlen输出随机值。
-    
+    printf("%d",strlen(*arr));   //'a'的ASC||码为97，访问地址为97的内存，非法访问，程序崩溃。
     return 0;
     }
