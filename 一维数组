@@ -7,11 +7,18 @@ int main(){
     char arr3[10]="b";   //这种方法b后面包含'\0'。
     char arr4[10]={97};   //97表示ASCII码97代表的符号：a(小写)。
     
+    //strlen的参数类型为const char *.
     char arr5[]="abcdef";
     printf("%d",sizeof(arr5));   //包含'\0'，输出7。
     printf("%d",strlen(arr5));   //'\0'之前的元素，输出6。
+    printf("%d",strlen(*arr));   //'a'的ASC||码为97，访问地址为97的内存，非法访问，程序崩溃。
     
     char arr6[]={'a','b','c'};   //这样定义的数组在c后面是随机值，不是'\0'，因此sizeof输出3，而strlen输出随机值。
-    printf("%d",strlen(*arr));   //'a'的ASC||码为97，访问地址为97的内存，非法访问，程序崩溃。
+    printf("%d",strlen(*arr));   //访问地址为'a'的ASC||码值的地址，程序崩溃。
+    printf("%d",strlen(arr[1])); //访问地址为'b'的ASC||码值的地址，程序崩溃。
+    
+    char *p="abcde";             //表示将数组首元素地址赋给p。
+    printf("%d",sizeof(p[0]);    //p[0]==*(p+0)表示首元素，输出1.
+    printf("%d",strlen(&p));     //p（地址）的地址是个随机值。
     return 0;
     }
