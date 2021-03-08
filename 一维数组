@@ -17,9 +17,12 @@ int main(){
     printf("%d",strlen(*arr));   //访问地址为'a'的ASC||码值的地址，程序崩溃。
     printf("%d",strlen(arr[1])); //访问地址为'b'的ASC||码值的地址，程序崩溃。
     
+    char* a[]={"work","at","aaaa"};//将每个元素首字母的地址放在数组中。
     char *p="abcde";             //表示将数组首元素地址赋给p。
     *p = 'x';                   //""定义的字符串为常量字符串，此处无法更改，会出现错误。
     printf("%d",sizeof(p[0]);    //p[0]==*(p+0)表示首元素，输出1.
     printf("%d",strlen(&p));     //p（地址）的地址是个随机值。
+    
+    
     return 0;
     }
