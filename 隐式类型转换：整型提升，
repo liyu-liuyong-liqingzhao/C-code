@@ -9,6 +9,12 @@ int main(){
     printf("%u",sizeof(c));    //输出结果为1,4,1，第二个参与表达式运算，发生整型提升，大小变为4字节。
     printf("%u",sizeof(+c));
     printf("%u",sizeof(!c));
-
+    
+    unsigned char a = 200;   //unsigned char范围0-255.
+    unsigned char b = 100;
+    unsigned char c = 0;
+    c=a+b;                   //计算时a,b先整型提升，省去24个0得到11001000和01100100，计算后省去23个0得到100101100，只取最后8位00101100得到44.
+    printf("%d %d",a+b,c);   //a+b的结果没有储存，不会变化，输出300.
+    
     return 0;         
     }
