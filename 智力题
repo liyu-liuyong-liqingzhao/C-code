@@ -11,6 +11,59 @@ int main(){
     //赛马问题：36匹马，6个道，不能计时，比几次能确定前三名？
     //先6个一组，6组各比一次，再六个组的第一比一次，再第一组的前三加第二组的前二加第三组第一比一次。
     //25匹马，5个道，不能计时，比几次确定前三名？
-    
     return 0;
     }
+    
+#include<assert.h>
+#include<string.h>
+void reverse(char* left,char* right)
+{
+    while(left<right)
+        {
+        char tmp=*left;
+        *left=*right;
+        *right=tmp;
+        left++;
+        right--;
+        }
+}
+void move(char* arr,int k)   //三次逆序，如翻转2个时，分成ab和cdef分别逆序（不是翻转）成ba和fedc再合并得到bafedc，再整体逆序得到cdefab.
+{
+    int len=strlen(arr);
+    assert(k<=len);
+    reverse(arr,arr+k-1);
+    reverse(arr+k,arr+len-1);
+    reverse(arr,arr+len-1);
+}
+int if_move(char* s1,char* s2)   //将s1复制一遍得到abcdefabcdef,看s2是不是它的子字符串即可。
+{
+    //库函数strcat(s1,s1)将第二个变量接到第一个变量后面，第二个字符串的首字符取代第一个字符串的'\0',
+    //字符串不同时，读取到第二个字符串的'\0'终止，当复制自己时，'\0'被取代，第二个字符串也没有'\0'，程序崩溃。
+    int len=strlen(s1);
+    int len1=strlen(s2);
+    if(len!=len1)
+        return 0;
+    strncat(s1,s1,len);   //库函数，只传递指定长度的内容，即len个字符。
+    char* ret=strstr(s1,s2);   //库函数，判断第二个变量是否为第一个变量子字符串，返回找到的子字符串首字母的地址。
+    if(ret==NULL)
+        return 0;
+    else
+        return 1;
+}
+int main()
+    {
+    //将字符串的前n个字符从左往右依次放到最后，翻转一个即abcd变成bcda，两个即cdab.
+    char arr[]="abcdef";   //常量字符串无法更改，所以写成数组。
+    move(arr,n);
+    printf("%s",arr);
+    
+    //判断一个字符串是否为另一个字符串翻转得来的。
+    char arr1[]="cdefab";
+    int ret = if_move(arr,arr1);  
+    if(ret==1)
+        printf("yes");
+    else
+        printf("no");
+    return 0;
+    }
+
