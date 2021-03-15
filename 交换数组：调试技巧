@@ -12,7 +12,7 @@ int main()
     return 0;
     }
 
-                                            //strcpy是系统函数，有返回值，返回被赋值后的字符。需要引用<stdlib.h>，此处mcopy为自定义函数，模仿其功能。
+                                            //strcpy系统函数，返回dest地址。需要引用<stdlib.h>，此处mcopy为自定义函数，模仿其功能。
 char* mcopy(char* dest,const char* src)     //const可以防止赋值对象搞反，因为arr2被const修饰无法更改，所以当写错成arr1赋值给arr2时程序会报错。
 {
     char* ret=dest;
