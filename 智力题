@@ -66,4 +66,38 @@ int main()
         printf("no");
     return 0;
     }
+    
+//一个矩阵从左到右从上到下都递增，判断某个数是否存在。
+int find(int arr[3][3],int k,int*px,int*py)
+{
+    int x=0;
+    int y=*py-1;
+    //取右上角或左下角的数，因为它一行最大一列最小或一行最小一列最大（总是相反），通过比较可以直接去掉一行或一列，
+    //而左上角和右下角的数一行一列都是最大或最小，无法去掉一行或一列。
+    while(x<=*px-1 && y>=0)   //当取右上角的数时，会逐渐往左下角缩减，左下角的数坐标（*px-1,0).
+    {
+        if(arr[x][y]>k)
+            y--;
+        else if(arr[x][y]<k)
+            x++;
+        else
+            *px=x;
+            *py=y;
+            return 1;  //return x,y的意思是返回逗号表达式的结果y.
+    }
+    return 0;
+}
+int main(){
+    int arr[3][3]={{1,2,3}，{4,5,6}，{7,8,9}}；
+    int k=7;
+    int x=3;
+    int y=3;
+    int ret=find(arr,k,&x,&y);   //便于直接更改x,y，因为find函数内部不能返回两个值。
+    if(ret==1)
+        printf("找到了")；
+        printf("下标：%d %d",x,y);
+    else
+        printf("找不到")；
+    return 0;
+    }
 
