@@ -1,0 +1,13 @@
+#include<Stdio.h>
+int main(){
+    struct  //匿名结构体内容一样也会被认作两个类型。
+    {
+        int a;
+    }x;
+    struct
+    {
+        int a;
+    }*p;
+    p=&x;   //类型不兼容。
+    return 0;
+    }
