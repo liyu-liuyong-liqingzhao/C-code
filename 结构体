@@ -12,6 +12,7 @@ int main(){
     struct node
     {
         struct node next;   //结构体不能包含本身，否则内存会无限大。
+        struct node* next;  //可以存放下一个结构体的指针来延续。
     }
     return 0;
     }
