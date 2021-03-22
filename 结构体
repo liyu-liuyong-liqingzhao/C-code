@@ -9,5 +9,9 @@ int main(){
         int a;
     }*p;
     p=&x;   //类型不兼容。
+    struct node
+    {
+        struct node next;   //结构体不能包含本身，否则内存会无限大。
+    }
     return 0;
     }
