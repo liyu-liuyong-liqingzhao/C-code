@@ -1,0 +1,11 @@
+#include<stdio.h>
+void getmemory(char*p)
+{
+    p=(char*)malloc(10);
+}
+int main(){
+    char* str=NULL;
+    getmemory(str);   //传递形参，只是把str的内容复制给p，str本身不变。
+    printf(str);      //输出格式没有错误。
+    return 0;
+    }
