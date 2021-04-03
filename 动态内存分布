@@ -2,12 +2,18 @@
 #include<stdlib.h>
 void getmemory(char*p)
 {
-    p=(char*)malloc(10);
+    p=(char*)malloc(10);   //malloc开辟的空间在堆区上，不会和局部变量一样消失。需要手动free。
     return p;         //将p返回就可以改变str的内容。
+}
+char* get(void)
+{
+    char p[]="hello";   //p只是局部变量，离开函数后p的内容就是随机了。可以用static使变量不会失效。
+    return p;
 }
 int main(){
     char* str=NULL;
     getmemory(str);   //传递形参，只是把str的内容复制给p，str仍是NULL。此处改成&str也可以。
+    str=get();
     printf(str);      //输出格式没有错误。
     free(str);
     str=NULL;
