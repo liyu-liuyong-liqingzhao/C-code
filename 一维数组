@@ -2,9 +2,10 @@
 #include<string.h>
 int main(){
     int arr[10]={1,2,3};   //不完全初始化使int或char型数组剩余元素默认0。
+    int arr[0];            //定义未知大小的数组。
     char arr2[10]={'a'};
     
-    char arr3[10]="b";   //这种方法b后面包含'\0'。
+    char arr3[10]="b";    //这种方法b后面包含'\0'。
     char arr4[10]={97};   //97表示ASCII码97代表的符号：a(小写)。
     
     //strlen的参数类型为const char *.
@@ -18,10 +19,10 @@ int main(){
     printf("%d",strlen(arr[1])); //访问地址为'b'的ASC||码值的地址，程序崩溃。
     
     char* a[]={"work","at","aaaa"};//将每个元素首字母的地址放在数组中。
-    char *p="abcde";             //表示将数组首元素地址赋给p。
-    *p = 'x';                   //""定义的字符串为常量字符串，此处无法更改，会出现错误。
-    printf("%d",sizeof(p[0]);    //p[0]==*(p+0)表示首元素，输出1.
-    printf("%d",strlen(&p));     //p（地址）的地址是个随机值。
+    char *p="abcde";               //表示将数组首元素地址赋给p。
+    *p = 'x';                      //""定义的字符串为常量字符串，此处无法更改，会出现错误。
+    printf("%d",sizeof(p[0]);      //p[0]==*(p+0)表示首元素，输出1.
+    printf("%d",strlen(&p));       //p（地址）的地址是个随机值。
     
     
     return 0;
