@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct S
+{
+    int n;
+    int arr[0];      //或写成arr[]。结构体中柔性数组前面必须包含其他元素。sizeof计算结构体大小时柔性数组不包含在内。
+};
+int main(){
+    struct S *p=(struct S*)malloc(sizeof(struct S)+5*sizeof(int));   //需要单独开辟柔性数组的空间。
+    struct S *ps=realloc(p,44);
+    if(ps!=NULL)
+    {
+        p=ps;
+    }
+    free(p);
+    p=NULL;
+    return 0;
+}
