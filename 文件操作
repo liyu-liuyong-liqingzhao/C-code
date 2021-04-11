@@ -35,4 +35,5 @@ int main()
     fscanf(p,"%d %s",&(t.n),t.arr);     //将文件的数据输入到程序里。arr是数组名，不用取地址。
     sprintf(a,"%d %s",s.n,s.arr);       //向字符串输出内容，这里将结构体改变为字符串。
     sscanf(a,"%d %s",&(t.n),t.arr);
+    return 0;
 }
