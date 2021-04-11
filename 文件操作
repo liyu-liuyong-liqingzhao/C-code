@@ -1,0 +1,38 @@
+#include<stdio.h>                       //fopen和fclose的库函数。
+int main(){
+    FILE* P=fopen("../test.txt","r");   //fopen返回文件地址,类型为FILE*。相对路径:../表示打开文件位于当前文件上一路径，./表示当前路径。
+    fopen("test.txt","r");              //该文件在当前c文件同一路径（同一文件夹），r表示只读。
+    fopen("C:\\code\\test.txt","r");    //绝对路径，\\防止转义\后面的字母。
+    fputc('s',p);                       //写入数据。
+    printf("%c",fgetc(p));              //读取数据。
+    fclose(p);
+    p=NULL;
+    int ch=fgetc(stdin);                //从键盘输入字符。定义int型，代表读取ASCII码值。
+    fputc(ch,stdout);                   //从屏幕输出字符。
+    char arr[]={0};
+    fgets(arr,10,stdin);                //从stdin读取放入arr中，最多10个元素。
+    fputs("sss\n",p);                   //输出字符串，需要自己换行。
+    gets(arr);                          //gets和puts默认标准输入输出（键盘和屏幕）。
+    puts(arr);                          //puts函数自带换行。
+    return 0;
+}
+struct S
+{
+    int n;
+    char arr[10];
+};
+int main()
+{
+    struct S s={10,"sss"};
+    struct S t={0};
+    char a[100]={0};
+    FILE* p=fopen("test.txt","w");      //加上f可以针对所有输入输出流。
+    fseek(p,-2,SEEK_END);               //SEEK_CUR,SEEK_SET,SEEK_END分别从当前，开始，末尾（最后一个元素的后一个地址而不是指向最后一个元素）查找，
+                                        //-2表示向前偏移2个单位。
+    fwrite(&s,sizeof(struct S),1,p);    //二进制写文件。把s指向的内容写到p里。1个struct S大小的元素。
+    fread(&t,sizeof(struct S),1,p);     //二进制读文件。将p的内容读取到t里面。
+    fprintf(p,"%d %s",s.n,s.arr);       //向文件中输出内容。
+    fscanf(p,"%d %s",&(t.n),t.arr);     //将文件的数据输入到程序里。arr是数组名，不用取地址。
+    sprintf(a,"%d %s",s.n,s.arr);       //向字符串输出内容，这里将结构体改变为字符串。
+    sscanf(a,"%d %s",&(t.n),t.arr);
+}
