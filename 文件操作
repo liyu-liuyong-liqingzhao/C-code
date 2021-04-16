@@ -14,6 +14,7 @@ int main(){
     fputs("sss\n",p);                   //输出字符串，需要自己换行。
     gets(arr);                          //gets和puts默认标准输入输出（键盘和屏幕）。
     puts(arr);                          //puts函数自带换行。
+    perror("this");                     //先打印引号内容和冒号，再打印错误原因。
     return 0;
 }
 struct S
@@ -27,6 +28,9 @@ int main()
     struct S t={0};
     char a[100]={0};
     FILE* p=fopen("test.txt","w");      //加上f可以针对所有输入输出流。
+    fgetc(p);
+    ftell(p);                           //返回指针相对起始位置的偏移量。fgetc已经读取第一个元素，所以当前偏移量为1.
+    rewind(p);                          //使指针返回起始位置。
     fseek(p,-2,SEEK_END);               //SEEK_CUR,SEEK_SET,SEEK_END分别从当前，开始，末尾（最后一个元素的后一个地址而不是指向最后一个元素）查找，
                                         //-2表示向前偏移2个单位。
     fwrite(&s,sizeof(struct S),1,p);    //二进制写文件。把s指向的内容写到p里。1个struct S大小的元素。
@@ -35,5 +39,7 @@ int main()
     fscanf(p,"%d %s",&(t.n),t.arr);     //将文件的数据输入到程序里。arr是数组名，不用取地址。
     sprintf(a,"%d %s",s.n,s.arr);       //向字符串输出内容，这里将结构体改变为字符串。
     sscanf(a,"%d %s",&(t.n),t.arr);
+    printf("%d",fgetc(p));              //EOF：end of file,值为-1.返回-1表示空文件，直接读取文件结束标志。
+    feof(p);                            //判断文件是不是因为读取到文件结束标志而结束，不是判断文件是否结束。
     return 0;
 }
