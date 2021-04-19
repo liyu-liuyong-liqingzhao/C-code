@@ -1,0 +1,27 @@
+#include<stdio.h>       //一般宏名全部大写，函数名不会全部大写。
+#define MAX 100;        //define起替换作用，会将MAX替换成100;(包括;),所以define不要使用;。
+#define SQUARE(X) X*X   //写成(X)*(X)
+#define DOUBLE(X) X+X   //写成(X+X)
+#define PRINT(X) printf("the value of "#X" is %d",X)  //#X相当于“X”.
+#define TO(X,Y) X##Y    //##把两边的符号合并成一个符号。
+#define max(X,Y) ((X)>(Y)?(X):(Y))
+int main(){
+    printf("MAX=%d\n",MAX);   //打印100;,程序报错,字符串常量中的MAX不会被替换。
+    #undef MAX                //移除一个宏定义。
+    int a=SQUARE(1+1);
+    printf("%d\n",a);         //X替换成1+1,结果为1+1*1+1(没有括号),输出3,所以define每隔参数要加括号.
+    int b=10*DOUBLE(5);
+    printf("%d\n",b);         //X替换成5,结果为10*5+5,输出55，所以define整体加括号.
+    printf("hello ""world\n");//结果与和在一起相同。
+    int c=10;
+    PRINT(c);                 //相当于("the value of ""c"" is %d",c)
+    int sb=250;
+    printf("%d\n",TO(s,b));   //相当于("%d",sb).
+    int d=1;
+    int e=2;
+    int Max=max(d++,e++);     //替换成:((d++)>(e++)?(d++):(e++)),先判断,判断之后都++,不成立执行第二个语句,返回e的值,e再++.
+                              //1>2不成立,d变为2,e变为3,执行e++,返回e的值3,e再变为4.
+    printf("%d %d %d\n",Max,d,e);//输出3 2 4.
+    return 0;
+}
+
