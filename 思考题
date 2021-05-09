@@ -41,3 +41,31 @@ int main(){
     printf("%d",count);
     return 0;
 }
+
+void newarr(int* num1,int* num2,int m,int n){
+//给两个有序数组大小为m,n，将它们合并成新的有序数组，时间复杂度O(m+n)。
+    int* t=(int*)malloc(sizeof(int)*(m+n));
+    int i1=0,i2=0,i=0;
+    while(i1<m && i2<n)   //每个数组取一个数比较（从第一个开始），小的数放到新数组中，然后小的数组下标+1，大的数组下标不变，以此往复。
+    {
+        if(num1[i1<num2[i2])
+        {
+            t[i++]=num1[i1++];
+        }
+        else
+        {
+            t[i++]=num2[i2++];
+        }
+    }
+    while(i1<m)  //若两个数组都为到底则已经进入第一个循环，不会进入这个循环。
+    {            //以下两个循环为当其中一个到底后，将另一个剩余部分全部放入新数组。
+        t[i++]=num1[i1++];
+    }
+    while(i2<n)
+    {
+        t[i++]=num2[i2++];
+    }
+    memcpy(num1,t,sizeof(int)*(m+n));  //num1足够大，将新的数组返回到num1中。
+    free(t);
+}
+
