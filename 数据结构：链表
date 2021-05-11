@@ -1,9 +1,9 @@
 
-//迭代反转链表。
 struct listnode{
     int val;
     struct listnode *next;
 };
+//方法1：迭代反转链表。
 struct listnode* reverselist(struct listnode* head){
     if(head==NULL || haed->next==NULL)                   //只有一个或0个的情况。
         return head;
@@ -17,3 +17,16 @@ struct listnode* reverselist(struct listnode* head){
             n3=n3->next;
     }
 };
+//方法2：用一个新链表反转链表。
+struct listnode* reverselist(struct listnode* head){
+    struct listnode* newhead=NULL;
+    struct listnode* cur=head;
+    while(cur)                           //当前链表头为空则结束。这样可以很好的解决当前链表为空或者next->next为空的问题（方法1出现的问题）。
+    {
+        struct listnode* next=cur->next; //赋值next来储存当前链表的第二个节点，防止当前链表头移动之后丢失第二个节点地址。
+        cur->next=newhead;                //将当前链表头移动到新链表头的前面，即头插。
+        newhead=cur;                      //重新赋值新链表头。
+        cur=next;                         //重新赋值当前链表头。
+    }
+    return newhead;
+}
