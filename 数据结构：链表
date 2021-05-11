@@ -1,0 +1,19 @@
+
+//迭代反转链表。
+struct listnode{
+    int val;
+    struct listnode *next;
+};
+struct listnode* reverselist(struct listnode* head){
+    if(head==NULL || haed->next==NULL)                   //只有一个或0个的情况。
+        return head;
+    struct listnode* n1=NULL,*n2=head,*n3=head->nextl;   //在链表头之前加一个空指针n1,链表头为n2,第二个节点为n3.
+    while(n2)                                            //n2为空时，n1为链表尾，已经结束不用继续。
+    {
+        n2->next=n1;                                     //先将n1,n2反转。
+        n1=n2;                                           //n3的作用是储存下一个节点，不然n1,n2反转后会丢失下一个节点的地址。
+        n2=n3;                                           //再将三个地址都向后挪动一位，重复操作。
+        if(n3)                                           //如果n3为空则不含next，程序报错。
+            n3=n3->next;
+    }
+};
