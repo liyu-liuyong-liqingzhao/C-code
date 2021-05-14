@@ -61,3 +61,35 @@ struct listnode* find(struct listnode* head,int k)
     }
     return slow;
 };
+
+struct listnode* together(struct listnode* list1,struct listnode* list2)
+{//合并两个升序链表为一个新的升序链表，要求由两个链表拼接而来。
+    if(list1==NULL)
+        return list2;
+    if(list2==NULL)
+        return list1;
+    struct listnode* head=NULL;
+    struct listnode* tail=NULL;//记录拼接的链表的尾，以便于直接尾插，不用再遍历链表找到尾。
+    if(list1->val < list2->val)
+    {
+        head=tail=list1;
+        list1=list1->next;
+    }
+    else
+    {
+        head=tail=list2;
+        list2=list2->next;
+    }
+    while(list1 && list2)
+    {
+        if(list1->val < list2->val)
+        {
+            tail
+        }
+    }
+    if(list1)
+        tail->next=list1;
+    else
+        tail->next=list2;
+    return slow;
+};
