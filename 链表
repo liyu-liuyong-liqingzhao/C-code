@@ -30,3 +30,15 @@ struct listnode* reverselist(struct listnode* head){
     }
     return newhead;
 }
+
+struct listnode* middle(struct listnode* head)
+{//只遍历一遍就找出链表中间结点（偶数为第二个）
+    struct listnode* slow=head;
+    struct listnode* fast=head;
+    while(fast && fast->next)//这里为且，因为while判断的是继续的条件而不是结束的条件。
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+};
