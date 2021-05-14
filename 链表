@@ -42,3 +42,22 @@ struct listnode* middle(struct listnode* head)
     }
     return slow;
 };
+
+struct listnode* find(struct listnode* head,int k)
+{//只遍历一遍就找出链表倒数第k个结点。
+    struct listnode* slow=head;
+    struct listnode* fast=head;
+    while(k--)
+    {//先让fast走k步，再一起运动到尾。
+        if(fast)//防止k大于链表长度时出现段错误。
+            fast=fast->next;
+        else
+            return NULL;
+    }
+    while(fast)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+    return slow;
+};
