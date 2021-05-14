@@ -70,11 +70,11 @@ struct listnode* together(struct listnode* list1,struct listnode* list2)
         return list1;
     struct listnode* head=NULL;
     struct listnode* tail=NULL;//记录拼接的链表的尾，以便于直接尾插，不用再遍历链表找到尾。
-    if(list1->val < list2->val)
-    {
-        head=tail=list1;
-        list1=list1->next;
-    }
+    if(list1->val < list2->val)//还可以不写if和else，设置带哨兵位的头结点，不储存数据，只便于尾插。
+    {                          //写成head=tail=(struct listnode*)malloc(sizeof(struct listnode));
+        head=tail=list1;       //结尾将return head改为struct listnode* newhead=head->next;
+        list1=list1->next;                          //free(head);
+    }                                               //return newhead;
     else
     {
         head=tail=list2;
@@ -91,5 +91,5 @@ struct listnode* together(struct listnode* list1,struct listnode* list2)
         tail->next=list1;
     else
         tail->next=list2;
-    return slow;
+    return head;
 };
