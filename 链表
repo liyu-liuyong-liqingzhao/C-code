@@ -122,3 +122,43 @@ bool checklist(listnode* A){
     }
     return true;
 }
+
+typedef struct listnode LN;
+//找到两个链表相交的第一个节点，指两个链表后面一段为同一个链表，而不是两直线相交有一个交点那种，类似Y。
+//因为只能两个结点指向同一个结点，而不能一个结点指向两个结点。
+struct listnode* merge(struct listnode *ha,struct listnode *hb)
+{
+    LN* cura=ha;//定义临时变量防止原本的ha,hb丢失。
+    LN* curb=hb;
+    int lena=0,lenb=0;
+    while(cura)//计算出两个链表长度，然后长的先走相差的结点数，然后它们一起走到相交点。
+    {
+        lena++;
+        cura=cura->next;
+    }
+    while(curb)
+    {
+        lenb++;
+        curb=curb->next;
+    }
+    LN* longlist=ha;//先假设一个长的。
+    LN* shortlist=hb;
+    if(lenb>lena)//如果反了就重新赋值。
+    {
+        longlist=hb;
+        shortlist=ha;
+    }
+    int gap=abs(lena-lenb);//abs库<stdlib.h>
+    while(gap--)//长的先走相差的结点数。
+    {
+        longlist=longlist->next;
+    }
+    while(longlist)
+    {
+        if(longlist==shortlist)//因为是同一个结点，所以判断地址是否相同。
+            return longlist;
+        longlist=longlist->next;
+        shortlist=shortlist->next;
+    }
+    return NULL;
+}
