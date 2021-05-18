@@ -93,3 +93,32 @@ struct listnode* together(struct listnode* list1,struct listnode* list2)
         tail->next=list2;
     return head;
 };
+
+bool checklist(listnode* A){
+//bool函数只返回ture或false.
+//判断一个链表的值是否是回文结构，时间复杂度O(n)空间复杂度O(1).
+    listnode* fast = A;//先找出中间结点(偶数为后一个)，取下来作一个新链表，
+    listnode* slow = A;//再逆置之后判断两个链表是否相等。
+    listnode* prev = NULL;//取下来逆置之前slow的前一个指针仍指向slow.
+    while(fast && fast->next)
+    {
+        prev=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    prev->next=NULL;  //逆置后仍指向slow(新链表的尾),此处将它们断开。
+    slow=reverselist(slow);//逆置链表，此处省略，逆置会返回新链表的头(不是slow,而是新的地址，所以需要赋值给slow。
+    while(A)//可能会有一个链表多出一个，但是只要短的结束时都相同就满足。
+    {
+        if(A->val != slow->val)
+        {
+            return false;
+        }
+        else
+        {
+            A=A->next;
+            slow=slow->next;
+        }
+    }
+    return true;
+}
