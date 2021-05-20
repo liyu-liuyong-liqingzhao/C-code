@@ -162,3 +162,25 @@ struct listnode* merge(struct listnode *ha,struct listnode *hb)
     }
     return NULL;
 }
+
+bool cycle(struct listnode* head)
+{//判断是否带环。
+    struct listnode* slow=head;
+    struct listnode* fast=head;
+    while(fast && fast->next)
+    {//快指针只能一次走两步，因为进入环时不管相差多少，慢1快2每次距离减小1，必定可以相遇，
+        slow=slow->next;//但如果快指针每次走3步或以上，可能会错开。
+        fast=fast->next->next;
+        if(slow==fast)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+//若链表有环则返回入环的第一个结点，否则返回NULL。
+//先找到快慢指针相交的结点，设入环前的长度为L，入环后到相交的结点长度为X，环的长度为C。
+//慢指针走了L+X，快指针走了两倍，但同时也走了L+X+N*C，即2*(L+X)=L+X+N*C.
+//L+X=N*C，然后将环从交点断开与起点分别作为一个新链表的头，这样就变为两个链表找交点，即类似Y的题目。
+
