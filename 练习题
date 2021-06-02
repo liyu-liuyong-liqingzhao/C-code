@@ -1,0 +1,11 @@
+//从字符串str中删除指定的字符ch
+void delcharfun(char *str,char ch)
+{
+    char* head;
+    for(head=str;*head!='\0';head++)
+    {
+        if(*head!=ch)
+            *str++=*head;
+    }
+    *str='\0';
+}
